@@ -7389,9 +7389,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1862159459}
-        m_TargetAssemblyTypeName: GestionCuentaManager, Assembly-CSharp
-        m_MethodName: CerrarPanel
+      - m_Target: {fileID: 1257435758}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: CloseGestionCuenta
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

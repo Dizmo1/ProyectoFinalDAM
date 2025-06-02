@@ -140,7 +140,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void FinalizarPartida()
     {
         if (partidaActualId == -1)

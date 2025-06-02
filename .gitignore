@@ -1,4 +1,4 @@
-# Unity
+# --- UNITY ---
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -9,14 +9,42 @@ Assets/AssetStoreTools*
 *.unityproj
 *.sln
 *.user
-.vscode/
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
 
-# Visual Studio
+# Autogenerados por Unity
+sysinfo.txt
+UnityGenerated/
+*.apk
+*.aab
+
+# VSCode / Rider
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# --- VISUAL STUDIO ---
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 
-# API .NET
+# --- API .NET ---
 API-Baloncesto/bin/
 API-Baloncesto/obj/
+
+# --- SISTEMA ---
+.DS_Store
+Thumbs.db
+
+# --- DOTNET general ---
+*.dbmdl
+*.bak
+*.backup
+*.log
+*.vs/

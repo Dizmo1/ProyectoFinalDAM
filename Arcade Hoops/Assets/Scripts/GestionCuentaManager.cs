@@ -86,16 +86,18 @@ public class GestionCuentaManager : MonoBehaviour
                     }
                 }
             }
+            else if (www.responseCode == 409)
+            {
+                // El nombre ya existe
+                ErrorResponse error = JsonUtility.FromJson<ErrorResponse>(www.downloadHandler.text);
+                textoFeedback.text = "❌ " + error.mensaje;
+            }
             else
             {
-                textoFeedback.text = "Error al editar: " + www.downloadHandler.text;
+                textoFeedback.text = "❌ Error al editar: " + www.error;
                 Debug.Log("Respuesta completa: " + www.downloadHandler.text);
             }
-        }
-    }
 
-    public void CerrarPanel()
-    {
-        gameObject.SetActive(false);
+        }
     }
 }

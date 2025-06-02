@@ -113,6 +113,20 @@ namespace BaloncestoAPI.Controllers
             {
                 conexion.Open();
 
+                // ✅ Verificar si el nuevo nombre ya existe (y es distinto del actual)
+                if (!string.IsNullOrEmpty(request.nuevoNombre))
+                {
+                    var checkCmd = new MySqlCommand("SELECT COUNT(*) FROM Jugadores WHERE Nombre = @nuevoNombre AND Email != @email", conexion);
+                    checkCmd.Parameters.AddWithValue("@nuevoNombre", request.nuevoNombre);
+                    checkCmd.Parameters.AddWithValue("@email", request.email);
+
+                    int existe = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (existe > 0)
+                    {
+                        return Conflict(new { mensaje = "Ese nombre ya está en uso por otro usuario." });
+                    }
+                }
+
                 var comandos = new List<string>();
                 if (!string.IsNullOrEmpty(request.nuevoNombre))
                     comandos.Add("nombre = @nuevoNombre");
@@ -138,6 +152,7 @@ namespace BaloncestoAPI.Controllers
                 return Ok(new { mensaje = "Datos actualizados correctamente." });
             }
         }
+
 
         //ELIMINAR USUARIO
         [HttpDelete("eliminar")]
