@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 HandlePartidaResponse(www);
-                SceneManager.LoadScene("GameScene"); // 👈 Ir a la escena después de crear partida
+                SceneManager.LoadScene("GameScene"); 
             }
             else
             {

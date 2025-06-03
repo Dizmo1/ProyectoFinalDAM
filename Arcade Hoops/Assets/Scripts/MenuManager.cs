@@ -10,10 +10,10 @@ public class MenuManager : MonoBehaviour
 
     public GameObject panelAbout;
     public GameObject panelGestionCuenta;
-    public GameObject botonAdminPanel; // ← Asigna desde el Inspector el botón "Panel de Administración"
+    public GameObject botonAdminPanel; 
     public GameObject panelAdminOpciones;
     public GameObject menuPrincipalUI;
-    public GameObject panelOpciones; // ← Asignar desde Inspector
+    public GameObject panelOpciones;
 
 
     void Start()

@@ -8,12 +8,13 @@ public class EncesteDetector : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public AudioSource audioSource;
     public AudioClip scoreSound;
+    public AudioClip voiceTwoPoints; // ← Voz "2 points"
 
-    [Header("Efectos visuales")]
-    public GameObject fireworks;
+    [Header("Feedback Visual")]
+    public GameObject textoPuntos; // ← Texto "+2" que aparece sobre la canasta
 
     [Header("Animación Red")]
-    public Animator animatorRed; // ← Asignar el Animator del objeto Net
+    public Animator animatorRed; // ← Animator de la red
 
     private int score = 0;
 
@@ -22,8 +23,8 @@ public class EncesteDetector : MonoBehaviour
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
-        if (fireworks != null)
-            fireworks.SetActive(false);
+        if (textoPuntos != null)
+            textoPuntos.SetActive(false); // Ocultar texto al inicio
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,51 +37,40 @@ public class EncesteDetector : MonoBehaviour
                 Vector3 posicionInicial = lanzador.GetLaunchPosition();
                 Vector3 posicionFinal = other.transform.position;
 
-                if (GameManager.Instance != null)
-                {
-                    Debug.Log("📤 Enviando tiro desde EncesteDetector...");
-                    GameManager.Instance.RegistrarTiro(true, posicionInicial, posicionFinal);
-                }
-                else
-                {
-                    Debug.LogError("❌ GameManager.Instance es NULL en EncesteDetector.");
-                }
+                // Registrar tiro en API
+                GameManager.Instance?.RegistrarTiro(true, posicionInicial, posicionFinal);
 
-                Debug.Log("✅ Enceste detectado y registrado");
-
-                // 🎯 Sumar 2 puntos por canasta
+                // Sumar 2 puntos
                 score += 2;
                 if (scoreText != null)
                     scoreText.text = "Puntos: " + score;
 
-                // 🔊 Sonido de enceste
+                // Sonido de enceste
                 if (audioSource != null && scoreSound != null)
                     audioSource.PlayOneShot(scoreSound);
 
-                // 🎆 Fuegos artificiales
-                if (fireworks != null)
-                {
-                    fireworks.SetActive(true);
-                    fireworks.GetComponent<ParticleSystem>().Play();
-                    StartCoroutine(DesactivarFuegos());
-                }
+                // Sonido de voz "2 points"
+                if (audioSource != null && voiceTwoPoints != null)
+                    audioSource.PlayOneShot(voiceTwoPoints);
 
-                // 🏀 Animación de la red
+                // Mostrar "+2"
+                if (textoPuntos != null)
+                    StartCoroutine(MostrarTextoPuntos());
+
+                // Animación de la red
                 if (animatorRed != null)
-                {
                     animatorRed.SetTrigger("Balancear");
-                }
 
-                // 🔄 Resetear balón
+                // Resetear balón
                 lanzador.ResetBall();
             }
         }
     }
 
-    private IEnumerator DesactivarFuegos()
+    private IEnumerator MostrarTextoPuntos()
     {
-        yield return new WaitForSeconds(2f);
-        if (fireworks != null)
-            fireworks.SetActive(false);
+        textoPuntos.SetActive(true);
+        yield return new WaitForSeconds(1.2f);
+        textoPuntos.SetActive(false);
     }
 }
