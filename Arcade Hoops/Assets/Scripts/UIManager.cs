@@ -30,7 +30,7 @@ namespace Assets.Scripts
             if (acierto)
             {
                 puntos++;
-                textoPuntuacion.text = "Puntos: " + puntos;
+                textoPuntuacion.text = "Puntuación: " + puntos;
             }
         }
     }

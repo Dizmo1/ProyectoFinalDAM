@@ -1,0 +1,46 @@
+-- Seleccionar la base de datos (crea si no existe)
+CREATE DATABASE IF NOT EXISTS baloncesto_db;
+USE baloncesto_db;
+
+-- Tabla de Jugadores
+CREATE TABLE IF NOT EXISTS Jugadores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    contraseña_hash VARCHAR(255) NOT NULL,
+    fecha_registro DATETIME NOT NULL DEFAULT NOW(),
+    rol VARCHAR(20) NOT NULL DEFAULT 'jugador'
+);
+
+-- Tabla de Partidas (una por sesión de juego)
+CREATE TABLE IF NOT EXISTS Partidas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    jugador_id INT NOT NULL,
+    fecha DATETIME NOT NULL DEFAULT NOW(),
+    puntos_totales INT NOT NULL,
+    FOREIGN KEY (jugador_id) REFERENCES Jugadores(id)
+        ON DELETE CASCADE
+);
+
+-- Tabla de Tiros (cada lanzamiento a canasta)
+CREATE TABLE IF NOT EXISTS Tiros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    partida_id INT NOT NULL,
+    acierto BOOLEAN NOT NULL,
+    tiempo_segundos FLOAT NOT NULL,
+    distancia FLOAT NOT NULL,
+    FOREIGN KEY (partida_id) REFERENCES Partidas(id)
+        ON DELETE CASCADE
+);
+
+-- Tabla de Estadísticas (acumuladas por jugador)
+CREATE TABLE IF NOT EXISTS Estadisticas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    jugador_id INT NOT NULL,
+    total_partidas INT NOT NULL DEFAULT 0,
+    aciertos_totales INT NOT NULL DEFAULT 0,
+    fallos_totales INT NOT NULL DEFAULT 0,
+    mejor_puntuacion INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (jugador_id) REFERENCES Jugadores(id)
+        ON DELETE CASCADE
+);
