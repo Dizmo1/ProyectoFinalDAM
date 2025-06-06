@@ -6,6 +6,7 @@ using System.Collections;
 using System.Text;
 using System;
 using Assets.Scripts.DTO;
+using Assets.Scripts;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     private int partidaActualId = -1;
     private string jwtToken;
     private float tiempoInicioPartida;
+    private int puntosTotales = 0;
+
 
     private void Awake()
     {
@@ -52,6 +55,42 @@ public class GameManager : MonoBehaviour
         Debug.Log("📌 GameManager está activo. Iniciando nueva partida...");
         StartCoroutine(IniciarPartidaCoroutine());
     }
+
+    public void SumarPuntos(int cantidad)
+    {
+        puntosTotales += cantidad;
+    }
+    public void FinalizarPartida()
+    {
+        if (partidaActualId == -1)
+        {
+            Debug.LogWarning("⚠️ No hay partida activa para finalizar.");
+            return;
+        }
+
+        Debug.Log($"✅ Partida finalizada: ID = {partidaActualId}");
+
+        // ➕ Mostrar el panel de resumen
+        ResumenPartidaManager resumen = FindObjectOfType<ResumenPartidaManager>();
+        if (resumen != null)
+        {
+            string nombre = PlayerPrefs.GetString("nombre", "Jugador");
+            float tiempo = Time.time - tiempoInicioPartida;
+            int puntos = puntosTotales;
+
+            resumen.MostrarResumen(nombre, puntos, tiempo);
+        }
+        else
+        {
+            Debug.LogWarning("❌ No se encontró ResumenPartidaManager. Cargando menú directamente.");
+            SceneManager.LoadScene("MenuScene");
+        }
+
+        partidaActualId = -1;
+    }
+
+
+
 
     private IEnumerator IniciarPartidaCoroutine()
     {
@@ -138,18 +177,6 @@ public class GameManager : MonoBehaviour
                     Debug.LogError($"Detalles: {www.downloadHandler.text}");
             }
         }
-    }
-
-    public void FinalizarPartida()
-    {
-        if (partidaActualId == -1)
-        {
-            Debug.LogWarning("⚠️ No hay partida activa para finalizar.");
-            return;
-        }
-
-        Debug.Log($"✅ Partida finalizada: ID = {partidaActualId}");
-        partidaActualId = -1;
     }
 
     private void SetupRequest(UnityWebRequest www)

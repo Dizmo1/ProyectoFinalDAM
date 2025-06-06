@@ -16,15 +16,15 @@ namespace Assets.Scripts
         {
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.FinalizarPartida();
+                GameManager.Instance.FinalizarPartida(); 
             }
             else
             {
                 Debug.LogWarning("⚠️ GameManager no encontrado al salir.");
+                SceneManager.LoadScene("MenuScene"); 
             }
-
-            SceneManager.LoadScene("MenuScene");
         }
+
 
 
     }

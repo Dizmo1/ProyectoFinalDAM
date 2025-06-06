@@ -1,12 +1,88 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE84084-FCA5-55D2-B7FB-77873671A78F}|Assembly-CSharp.csproj|c:\\users\\juan7\\onedrive\\documents\\baloncestounity\\arcade hoops\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE84084-FCA5-55D2-B7FB-77873671A78F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE84084-FCA5-55D2-B7FB-77873671A78F}|Assembly-CSharp.csproj|C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\assets\\scripts\\uijuegocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE84084-FCA5-55D2-B7FB-77873671A78F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uijuegocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE84084-FCA5-55D2-B7FB-77873671A78F}|Assembly-CSharp.csproj|C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\assets\\scripts\\resumenpartidamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE84084-FCA5-55D2-B7FB-77873671A78F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\resumenpartidamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDE84084-FCA5-55D2-B7FB-77873671A78F}|Assembly-CSharp.csproj|c:\\users\\juan7\\onedrive\\documents\\baloncestounity\\arcade hoops\\assets\\scripts\\encestedetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDE84084-FCA5-55D2-B7FB-77873671A78F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\encestedetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EncesteDetector.cs",
+              "DocumentMoniker": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\Assets\\Scripts\\EncesteDetector.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\EncesteDetector.cs",
+              "ToolTip": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\Assets\\Scripts\\EncesteDetector.cs",
+              "RelativeToolTip": "Assets\\Scripts\\EncesteDetector.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:54:27.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAQwFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:50:41.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResumenPartidaManager.cs",
+              "DocumentMoniker": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\Assets\\Scripts\\ResumenPartidaManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ResumenPartidaManager.cs",
+              "ToolTip": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\Assets\\Scripts\\ResumenPartidaManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ResumenPartidaManager.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:47:08.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UIJuegoController.cs",
+              "DocumentMoniker": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\Assets\\Scripts\\UIJuegoController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UIJuegoController.cs",
+              "ToolTip": "C:\\Users\\juan7\\OneDrive\\Documents\\BaloncestoUnity\\Arcade Hoops\\Assets\\Scripts\\UIJuegoController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UIJuegoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:46:41.372Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -43,9 +43,12 @@ public class EncesteDetector : MonoBehaviour
                 
                 score += 2;
                 if (scoreText != null)
-                    scoreText.text = "Puntos: " + score;
+                    scoreText.text = "Puntuación: " + score;
 
-                
+                GameManager.Instance?.SumarPuntos(2);
+
+
+
                 if (audioSource != null && scoreSound != null)
                     audioSource.PlayOneShot(scoreSound);
 
