@@ -1,47 +1,53 @@
-﻿using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-using UnityEngine.Networking;
-using System.Collections;
-using System.Text;
-using Assets.Scripts;
+﻿using UnityEngine; // Necesario para scripts de Unity
+using TMPro; // Para usar componentes TextMeshPro
+using UnityEngine.UI; // Para componentes UI (botones, etc.)
+using UnityEngine.Networking; // Para hacer peticiones HTTP
+using System.Collections; // Para usar corrutinas
+using System.Text; // Para codificar el JSON en bytes
+using Assets.Scripts; // Para usar DTOs como RegistroRequest
 
+// Clase que gestiona el registro y login de usuarios en la interfaz de Unity
 public class AuthManager : MonoBehaviour
 {
-    // Referencias UI
+    // Campos de entrada y feedback para el panel de registro
     public TMP_InputField inputNombre;
     public TMP_InputField inputEmailRegistro;
     public TMP_InputField inputContraseñaRegistro;
     public TextMeshProUGUI textoFeedbackRegistro;
 
+    // Campos de entrada y feedback para el panel de login
     public TMP_InputField inputEmailLogin;
     public TMP_InputField inputContraseñaLogin;
     public TextMeshProUGUI textoFeedbackLogin;
 
+    // Referencias a los paneles para alternar entre login y registro
     public GameObject panelRegistro;
     public GameObject panelLogin;
 
+    // URL base de la API
     private string apiUrl = "http://localhost:5195/api/auth";
 
+    // Al iniciar el script, se muestra el panel de login
     void Start()
     {
         MostrarPanelLogin(); // Iniciar con el panel de login
     }
 
-    // Alternar paneles
+    // Cambia a la vista del panel de registro
     public void MostrarPanelRegistro()
     {
         panelLogin.SetActive(false);
         panelRegistro.SetActive(true);
     }
 
+    // Cambia a la vista del panel de login
     public void MostrarPanelLogin()
     {
         panelRegistro.SetActive(false);
         panelLogin.SetActive(true);
     }
 
-    // Lógica de Registro (Botón "Registrarse")
+    // Valida los datos del formulario de registro antes de enviarlos
     public void ValidarRegistro()
     {
         if (string.IsNullOrEmpty(inputNombre.text))
@@ -71,9 +77,10 @@ public class AuthManager : MonoBehaviour
             return;
         }
 
-        StartCoroutine(RegistrarUsuario());
+        StartCoroutine(RegistrarUsuario()); // Si todo es válido, empieza la corrutina
     }
 
+    // Función auxiliar para verificar el formato del email
     private bool EsEmailValido(string email)
     {
         try
@@ -87,7 +94,7 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-
+    // Corrutina que envía la petición de registro al backend
     IEnumerator RegistrarUsuario()
     {
         var datosRegistro = new RegistroRequest
@@ -97,7 +104,7 @@ public class AuthManager : MonoBehaviour
             contraseña = inputContraseñaRegistro.text
         };
 
-        string jsonData = JsonUtility.ToJson(datosRegistro);
+        string jsonData = JsonUtility.ToJson(datosRegistro); // Convierte el objeto a JSON
 
         using (UnityWebRequest www = new UnityWebRequest($"{apiUrl}/registro", "POST"))
         {
@@ -106,14 +113,13 @@ public class AuthManager : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("Content-Type", "application/json");
 
-            yield return www.SendWebRequest();
+            yield return www.SendWebRequest(); // Espera la respuesta del servidor
 
             if (www.result == UnityWebRequest.Result.Success || www.responseCode == 200 || www.responseCode == 201)
             {
                 textoFeedbackRegistro.text = "¡Registro exitoso!";
-                MostrarPanelLogin();
+                MostrarPanelLogin(); // Vuelve al login
             }
-
             else if (www.responseCode == 409)
             {
                 var error = JsonUtility.FromJson<ErrorResponse>(www.downloadHandler.text);
@@ -123,12 +129,10 @@ public class AuthManager : MonoBehaviour
             {
                 textoFeedbackRegistro.text = "❌ Error al registrar: " + www.error;
             }
-
         }
     }
 
-
-    // Lógica de Login (Botón "Iniciar Sesión")
+    // Valida los campos del login antes de enviarlos
     public void ValidarLogin()
     {
         if (string.IsNullOrEmpty(inputEmailLogin.text))
@@ -153,9 +157,10 @@ public class AuthManager : MonoBehaviour
             return;
         }
 
-        StartCoroutine(IniciarSesion());
+        StartCoroutine(IniciarSesion()); // Si es válido, lanza la corrutina
     }
 
+    // Corrutina que envía la solicitud de login
     IEnumerator IniciarSesion()
     {
         var datosLogin = new LoginRequest
@@ -164,8 +169,7 @@ public class AuthManager : MonoBehaviour
             contraseña = inputContraseñaLogin.text
         };
 
-
-        string jsonData = JsonUtility.ToJson(datosLogin);
+        string jsonData = JsonUtility.ToJson(datosLogin); // Convierte el objeto a JSON
 
         using (UnityWebRequest www = new UnityWebRequest($"{apiUrl}/login", "POST"))
         {
@@ -174,27 +178,24 @@ public class AuthManager : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("Content-Type", "application/json");
 
-            yield return www.SendWebRequest();
+            yield return www.SendWebRequest(); // Espera la respuesta
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Respuesta JSON: " + www.downloadHandler.text);  // <--- Añade esto para ver el JSON
+                Debug.Log("Respuesta JSON: " + www.downloadHandler.text); // Para depuración
 
                 LoginResponse respuesta = JsonUtility.FromJson<LoginResponse>(www.downloadHandler.text);
 
+                // Guardar los datos del usuario en PlayerPrefs
                 PlayerPrefs.SetString("token", respuesta.token);
                 PlayerPrefs.SetString("nombre", respuesta.nombre);
                 PlayerPrefs.SetString("rol", respuesta.rol);
                 PlayerPrefs.SetString("email", respuesta.email);
                 Debug.Log("Email guardado en PlayerPrefs: " + PlayerPrefs.GetString("email"));
 
-
-
-
                 textoFeedbackLogin.text = "¡Bienvenido, " + respuesta.nombre + "!";
-                UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene"); // Cargar escena principal
             }
-
             else if (www.responseCode == 401)
             {
                 var error = JsonUtility.FromJson<ErrorResponse>(www.downloadHandler.text);
@@ -204,7 +205,6 @@ public class AuthManager : MonoBehaviour
             {
                 textoFeedbackLogin.text = "❌ Error de conexión o inesperado: " + www.error;
             }
-
         }
     }
 }

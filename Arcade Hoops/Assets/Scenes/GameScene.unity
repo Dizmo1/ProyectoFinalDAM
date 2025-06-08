@@ -6340,9 +6340,6 @@ PrefabInstance:
       addedObject: {fileID: 926063119}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b3788a0f64f23449a9c118bcd1db04d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 926063125}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b3788a0f64f23449a9c118bcd1db04d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 926063127}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b3788a0f64f23449a9c118bcd1db04d, type: 3}
       insertIndex: -1
@@ -6401,26 +6398,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &926063125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926063118}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d568c8ec1997d64ebc7665ce90ed4aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fuerzaMultiplicador: 0.1
-  maxDragDistance: 50
-  rb: {fileID: 0}
-  mainCamera: {fileID: 0}
-  dragStartPosition: {x: 0, y: 0, z: 0}
-  isDragging: 0
-  cooldown: 0.5
-  lastThrowTime: 0
 --- !u!114 &926063127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6441,7 +6418,6 @@ MonoBehaviour:
   trajectoryLine: {fileID: 926063131}
   trajectoryPoints: 25
   simulationStep: 0.1
-  launchEffect: {fileID: 0}
   targetPoint: {fileID: 1893979452}
 --- !u!120 &926063131
 LineRenderer:
