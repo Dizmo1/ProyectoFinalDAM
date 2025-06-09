@@ -44,4 +44,32 @@ Juego de baloncesto 3D desarrollado en Unity con integración a una API REST con
    - Asegurar que el usuario de prueba `admin@admin.com` existe con rol `admin`.
 
 ## 📁 Estructura del proyecto
+📦 ArcadeHoops/
+├── Assets/
+│   ├── Scripts/
+│   │   ├── DTO/                    # Clases de transferencia de datos (LoginRequest, TiroData, etc.)
+│   │   ├── AdminManager.cs         # Panel de administración
+│   │   ├── BallController.cs       # Control del balón (entrada, físicas y lanzamiento)
+│   │   ├── EncesteDetector.cs      # Detector de canasta, suma puntos y registra tiro
+│   │   ├── GameManager.cs          # Controlador principal del juego y conexión con la API
+│   │   ├── GameTimer.cs            # Temporizador de la partida
+│   │   ├── GestionCuentaManager.cs # Edición de datos del usuario
+│   │   ├── MenuManager.cs          # Lógica del menú principal
+│   │   ├── OpcionesManager.cs      # Configuración de audio
+│   │   ├── ResumenPartidaManager.cs # Panel final con resumen
+│   │   ├── UIJuegoController.cs    # Botón de salir al menú
+│   │   ├── UIManager.cs            # Gestión de puntuación en HUD
+│   │   ├── SonidoImpacto.cs        # Reproduce sonido al impacto con objetos
+│   │   └── JsonHelper.cs           # Ayuda para deserializar arrays de JSON
+│   └── Scenes/
+│       ├── AuthScene.unity         # Escena de inicio de sesión y registro
+│       ├── MenuScene.unity         # Menú principal con opciones
+│       └── GameScene.unity         # Escena de juego
+├── API-Baloncesto/                # Proyecto de API REST (ASP.NET Core)
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Services/
+│   └── Program.cs
+├── README.md
+└── .gitignore
 
